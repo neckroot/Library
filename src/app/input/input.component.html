@@ -1,1 +1,16 @@
-<p>input works!</p>
+<form [formGroup]="formProfile" (ngSubmit)="handleSubmit(dataStorage)">
+
+  <div *ngFor="let field of fields; let i=index">
+
+    <label [for]='field.field'>{{field.name}}</label>
+    <input
+      [id]="field.field"
+      type="text"
+      formControlName="{{field.field}}"
+    >
+
+  </div>
+
+  <button type="submit">{{buttonName}}</button>
+
+</form>
