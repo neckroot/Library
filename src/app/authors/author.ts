@@ -1,7 +1,7 @@
 export interface Author {
-  id: string;
-  lastname: string;
-  firstname: string;
-  patronymic: string;
-  birthdate: string;
+  id?: string;
+  lastname?: string;
+  firstname?: string;
+  patronymic?: string;
+  birthdate?: string;
 }

@@ -1,35 +1,22 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { InputComponent } from '../input/input.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TableComponent } from '../table/table.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthorService } from '../services/author.service';
+import { NgFor } from '@angular/common';
+import { Author } from './author';
+import { AuthorModel } from './author.model';
 
 @Component({
   selector: 'app-authors',
-  standalone: true,
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.scss',
-  imports: [InputComponent, TableComponent],
+  standalone: true,
+  imports: [TableComponent, NgFor, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthorsComponent {
-  public fields = [
-    {
-      field: 'lastname',
-      name: 'Фамилия',
-    },
-    {
-      field: 'firstname',
-      name: 'Имя',
-    },
-    {
-      field: 'patronymic',
-      name: 'Отчество',
-    },
-    {
-      field: 'birthdate',
-      name: 'Дата рождения',
-    },
-  ];
+  private _authorService = inject(AuthorService);
+  public fields = AuthorModel;
 
   public profileForm = new FormGroup({
     lastname: new FormControl(''),
@@ -37,4 +24,14 @@ export class AuthorsComponent {
     patronymic: new FormControl(''),
     birthdate: new FormControl(''),
   });
+
+  public tableColumnNames = this.fields.reduce(
+    (headers, field) => (headers.push(field.label), headers),
+    ['id'],
+  );
+
+  public authorList$ = this._authorService.authors$;
+  addAuthor() {
+    this._authorService.addAuthor(<Author>this.profileForm.value);
+  }
 }

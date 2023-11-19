@@ -10,4 +10,15 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, RouterOutlet, RouterLink],
 })
-export class AppComponent {}
+export class AppComponent {
+  public data = [''];
+  protected localStorage = localStorage;
+
+  getData() {
+    const newData = [];
+    for (const key of Object.keys(localStorage)) {
+      newData.push(<string>localStorage.getItem(key));
+    }
+    this.data = newData;
+  }
+}

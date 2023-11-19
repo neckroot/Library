@@ -1,7 +1,31 @@
-<app-input
-  [formProfile]="profileForm"
-  [fields]="fields"
-  buttonName="Добавить книгу"
-  dataStorage="books"
-></app-input>
-<app-table></app-table>
+<form [formGroup]="profileForm" (ngSubmit)="addBook()">
+
+  <label for='author'>Автор</label>
+  <select
+    id="author"
+    formControlName="author"
+  >
+    <option [ngValue]="null" disabled>Выберите автора</option>
+    @for (author of authors$ | async; track author){
+      <option [ngValue]='author'>{{author}}</option>
+    }
+  </select>
+
+  @for (field of fields; track field.name) {
+  <label [for]='field.name'>{{field.label}}</label>
+    <input
+      [id]="field.name"
+      [formControlName]="field.name"
+      type="text"
+    >
+  }
+
+  <button type="submit">Добавить книгу</button>
+
+</form>
+
+<app-table
+  tableHeader="Книги"
+  [tableColumnNames]="tableColumnNames"
+  [dataTable$]="bookCollection$"
+></app-table>
