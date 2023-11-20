@@ -5,6 +5,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { BookService } from '../services/book.service';
 import { Book } from './book.model';
@@ -19,7 +20,6 @@ import { IUnion } from '../iunion';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrl: './books.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TableComponent, FormsModule, ReactiveFormsModule, AsyncPipe],
@@ -38,14 +38,18 @@ export default class BooksComponent {
   public bookCollection$ = this._bookService.books$;
 
   public profileForm = new FormGroup({
-    author: new FormControl(''),
-    title: new FormControl(''),
-    publisher: new FormControl(''),
-    year: new FormControl(''),
+    author: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    publisher: new FormControl('', Validators.required),
+    year: new FormControl('', [
+      Validators.required,
+      // Validators.pattern(/^\d{1,4}$/),
+    ]),
   });
 
   public addBook() {
     this._bookService.addBook(<Book>this.profileForm.value);
+    this.profileForm.reset();
   }
 
   public onSort(sortParams: SortParams) {

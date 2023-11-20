@@ -27,13 +27,22 @@ export class AuthorService {
   }
 
   private _isExist(data: Author) {
-    const dataClone = [...this._authors$.value].map((author) =>
-      JSON.stringify(
-        Object.fromEntries(
-          Object.entries(author).filter((prop) => prop[0] != 'id'),
-        ),
-      ),
+    return this._authors$.value.some(
+      (author) =>
+        author.firstname === data.firstname &&
+        author.lastname === data.lastname &&
+        author.patronymic === data.patronymic &&
+        author.birthdate === data.birthdate,
     );
-    return dataClone.includes(JSON.stringify(data));
   }
+  // private _isExist(data: Author) {
+  //     return this._authors$.value.some((author) => {
+  //       const authors = JSON.stringify(
+  //         Object.fromEntries(
+  //           Object.entries(author).filter((prop) => prop[0] != 'id'),
+  //         ),
+  //       );
+  //       return authors === JSON.stringify(data);
+  //     });
+  //   }
 }
