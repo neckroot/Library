@@ -2,21 +2,22 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TableComponent } from '../table/table.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthorService } from '../services/author.service';
-import { NgFor } from '@angular/common';
-import { Author } from './author';
+import { Author } from './author.model';
 import { AuthorModel } from './author.model';
+import { TableService } from '../services/table.service';
 
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.scss',
   standalone: true,
-  imports: [TableComponent, NgFor, ReactiveFormsModule],
+  imports: [TableComponent, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthorsComponent {
   private _authorService = inject(AuthorService);
-  public fields = AuthorModel;
+  private _tableService = inject(TableService);
+  public fields = AuthorModel.slice(1);
 
   public profileForm = new FormGroup({
     lastname: new FormControl(''),
@@ -25,9 +26,9 @@ export class AuthorsComponent {
     birthdate: new FormControl(''),
   });
 
-  public tableColumnNames = this.fields.reduce(
-    (headers, field) => (headers.push(field.label), headers),
-    ['id'],
+  public tableColumnNames = this._tableService.takeFromModel(
+    AuthorModel,
+    'label',
   );
 
   public authorList$ = this._authorService.authors$;

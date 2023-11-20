@@ -1,13 +1,29 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { IUnion, UnionModel } from '../iunion';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TableService {
-  public getTH(fields: Array<{ name: string; label: string }>) {
+  public takeFromModel(fields: Array<UnionModel>, key: keyof UnionModel) {
     return fields.reduce(
-      (headers, field) => (headers.push(field.label), headers),
-      ['id'],
+      (headers: Array<string>, field) => (headers.push(field[key]), headers),
+      [],
+    );
+  }
+
+  public sortTable(
+    field: keyof IUnion,
+    data$: Observable<Array<IUnion>>,
+    asc = 1,
+  ) {
+    return data$.pipe(
+      map((rows) =>
+        rows.sort((row1, row2) =>
+          <string>row1[field] > <string>row2[field] ? asc : -asc,
+        ),
+      ),
     );
   }
 }

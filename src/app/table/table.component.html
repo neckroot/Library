@@ -2,7 +2,10 @@
 <caption>{{tableHeader}}</caption>
   <thead>
     <tr>
-      <th *ngFor="let colName of tableColumnNames">
+      <th
+        *ngFor="let colName of tableColumnNames; let colByI=index"
+        (click)="sortByIndex(colByI)"
+      >
         {{colName}}
       </th>
     </tr>
@@ -10,7 +13,7 @@
   <tbody>
     <tr *ngFor="let row of dataTable$ | async">
 
-      <td *ngFor="let cell of Object.values(row)">
+      <td *ngFor="let cell of getCell(row)">
         {{cell}}
       </td>
 

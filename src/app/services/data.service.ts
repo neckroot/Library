@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUnion } from './iunion';
+import { IUnion } from '../iunion';
 
 @Injectable({
   providedIn: 'root',

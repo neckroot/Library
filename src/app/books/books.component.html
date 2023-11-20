@@ -28,4 +28,5 @@
   tableHeader="Книги"
   [tableColumnNames]="tableColumnNames"
   [dataTable$]="bookCollection$"
+  (sort)="onSort($event)"
 ></app-table>
