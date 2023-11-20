@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table,
+th,
+td,
+caption {
+  border: var(--border);
+  border-collapse: collapse;
+}
+
+td,
+th {
+  height: 2rem;
+  vertical-align: center;
+  padding: 0 0.5rem;
+}
+
+td {
+  &:first-child {
+    text-align: center;
+  }
+}
+
+table {
+  background-color: white;
+  margin-top: 2.5rem;
+}
+
+th {
+  position: sticky;
+  top: 2.5rem;
+  z-index: 1;
+  background-color: var(--main-color);
+  color: white;
+}
+
+caption {
+  border-bottom: none;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color: var(--main-color);
+}

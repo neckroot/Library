@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+
+  ul {
+    display: flex;
+    list-style: none;
+    border: var(--border);
+    border-radius: 6px;
+  }
+}
+
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--width) / 2);
+  height: 2.5rem;
+  text-decoration: none;
+  color: var(--main-color);
+
+  &:hover{
+    background-color: var(--main-color);
+    color: white;
+  }
+}
+
+router-outlet {
+  margin-top: 2.5rem;
+}

@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-color: #3a88fe;
+  --width: 25rem;
+  --border: 2px solid var(--main-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: var(--width);
+  border: var(--border);
+  border-radius: 6px;
+  background-color: white;
+
+  label {
+    padding: 1rem 1rem 0.25rem 1rem;
+    color: var(--main-color);
+
+    &::after{
+      content: ":";
+    }
+  }
+
+  input,
+  select {
+    height: 2rem;
+    font-family: sans-serif;
+    font-size: 1rem;
+    margin: 0 1rem;
+    border: none;
+    border-bottom: 1px solid;
+
+
+    &:focus {
+      outline: none;
+      border: none;
+      border-bottom: var(--border);
+    }
+  }
+
+  select {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+}
+
+.submit-form {
+  background-color: white;
+  height: 3rem;
+  font-size: 1rem;
+  color: var(--main-color);
+  border: none;
+  border-top: var(--border);
+  border-radius: 6px;
+  margin-top: 2rem;
+}

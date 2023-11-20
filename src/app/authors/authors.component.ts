@@ -9,7 +9,6 @@ import { TableService } from '../services/table.service';
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrl: './authors.component.scss',
   standalone: true,
   imports: [TableComponent, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
