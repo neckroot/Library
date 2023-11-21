@@ -3,8 +3,13 @@
   <thead>
     <tr>
       <th
-        *ngFor="let colName of tableColumnNames; let colByI=index"
-        (click)="sortByIndex(colByI)"
+        *ngFor="let colName of tableColumnNames; let i=index"
+        (click)="sortByIndex(i)"
+        [class.sortable] = 'isSortable[i]'
+
+        [class.sort-asc] = 'stateOrder[i] === -1'
+        [class.sort-desc] = 'stateOrder[i] === 1'
+        [class.sort-status] = 'isSortable[i] && stateOrder[i] === 0'
       >
         {{colName}}
       </th>

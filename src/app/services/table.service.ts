@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IUnion, UnionModel } from '../iunion';
 
 @Injectable({
@@ -8,7 +8,9 @@ import { IUnion, UnionModel } from '../iunion';
 export class TableService {
   public takeFromModel(fields: Array<UnionModel>, key: keyof UnionModel) {
     return fields.reduce(
-      (headers: Array<string>, field) => (headers.push(field[key]), headers),
+      (headers: Array<string | boolean>, field) => (
+        headers.push(field[key]), headers
+      ),
       [],
     );
   }
@@ -21,7 +23,11 @@ export class TableService {
     return data$.pipe(
       map((rows) =>
         rows.sort((row1, row2) =>
-          <string>row1[field] > <string>row2[field] ? asc : -asc,
+          <string>row1[field] === <string>row2[field]
+            ? 0
+            : <string>row1[field] > <string>row2[field]
+              ? asc
+              : -asc,
         ),
       ),
     );

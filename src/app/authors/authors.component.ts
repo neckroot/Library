@@ -9,7 +9,6 @@ import {
 import { AuthorService } from '../services/author.service';
 import { Author } from './author.model';
 import { AuthorModel } from './author.model';
-import { TableService } from '../services/table.service';
 
 @Component({
   selector: 'app-authors',
@@ -20,8 +19,7 @@ import { TableService } from '../services/table.service';
 })
 export class AuthorsComponent {
   private _authorService = inject(AuthorService);
-  private _tableService = inject(TableService);
-  public fields = AuthorModel.slice(1);
+  public formFieldsToGenerate = AuthorModel.slice(1);
 
   public profileForm = new FormGroup({
     lastname: new FormControl('', Validators.required),
@@ -33,10 +31,7 @@ export class AuthorsComponent {
     ]),
   });
 
-  public tableColumnNames = this._tableService.takeFromModel(
-    AuthorModel,
-    'label',
-  );
+  public tableParams = AuthorModel;
 
   public authorList$ = this._authorService.authors$;
   addAuthor() {

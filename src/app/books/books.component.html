@@ -11,7 +11,7 @@
     }
   </select>
 
-  @for (field of fields; track field.name) {
+  @for (field of formFieldsToGenerate; track field.name) {
   <label [for]='field.name'>{{field.label}}</label>
     <input
       [id]="field.name"
@@ -26,7 +26,6 @@
 
 <app-table
   tableHeader="Книги"
-  [tableColumnNames]="tableColumnNames"
+  [tableParams]="tableParams"
   [dataTable$]="bookCollection$"
-  (sort)="onSort($event)"
 ></app-table>

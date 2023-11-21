@@ -1,9 +1,9 @@
 export const AuthorModel = [
-  { name: 'id', label: 'id' },
-  { name: 'lastname', label: 'Фамилия' },
-  { name: 'firstname', label: 'Имя' },
-  { name: 'patronymic', label: 'Отчество' },
-  { name: 'birthdate', label: 'Дата рождения' },
+  { name: 'id', label: 'id', sortable: false },
+  { name: 'lastname', label: 'Фамилия', sortable: false },
+  { name: 'firstname', label: 'Имя', sortable: false },
+  { name: 'patronymic', label: 'Отчество', sortable: false },
+  { name: 'birthdate', label: 'Дата рождения', sortable: false },
 ];
 
 export interface Author {

@@ -12,10 +12,7 @@ import { Book } from './book.model';
 import { AsyncPipe } from '@angular/common';
 import { AuthorService } from '../services/author.service';
 import { BookModel } from './book.model';
-import { TableService } from '../services/table.service';
 import { map } from 'rxjs';
-import { SortParams } from '../table/table.model';
-import { IUnion } from '../iunion';
 
 @Component({
   selector: 'app-books',
@@ -27,14 +24,10 @@ import { IUnion } from '../iunion';
 export default class BooksComponent {
   private _bookService = inject(BookService);
   private _authorService = inject(AuthorService);
-  private _tableService = inject(TableService);
 
-  public fields = BookModel.slice(2);
+  public formFieldsToGenerate = BookModel.slice(2);
   public authors$ = this._getAuthors$();
-  public tableColumnNames = this._tableService.takeFromModel(
-    BookModel,
-    'label',
-  );
+  public tableParams = BookModel;
   public bookCollection$ = this._bookService.books$;
 
   public profileForm = new FormGroup({
@@ -50,18 +43,6 @@ export default class BooksComponent {
   public addBook() {
     this._bookService.addBook(<Book>this.profileForm.value);
     this.profileForm.reset();
-  }
-
-  public onSort(sortParams: SortParams) {
-    if (!sortParams.index) return;
-
-    const field = this._tableService.takeFromModel(BookModel, 'name')[
-      sortParams.index
-    ] as keyof IUnion;
-
-    this._tableService
-      .sortTable(field, this.bookCollection$, sortParams.order)
-      .subscribe();
   }
 
   private _getAuthors$() {

@@ -5,4 +5,5 @@ export interface IUnion extends Author, Book {}
 export interface UnionModel {
   name: string;
   label: string;
+  sortable: boolean;
 }

@@ -16,10 +16,11 @@ td,
 th {
   height: 2rem;
   vertical-align: center;
-  padding: 0 0.5rem;
 }
 
 td {
+  padding: 0 0.5rem;
+
   &:first-child {
     text-align: center;
   }
@@ -36,6 +37,7 @@ th {
   z-index: 1;
   background-color: var(--main-color);
   color: white;
+  padding: 0 1rem;
 }
 
 caption {
@@ -43,4 +45,39 @@ caption {
   padding: 0.5rem 0;
   font-weight: bold;
   color: var(--main-color);
+}
+
+.sortable {
+  cursor: pointer;
+
+  &::selection {
+    background-color: transparent;
+  }
+}
+
+.sort-asc,
+.sort-desc,
+.sortable:hover{
+  opacity: 90%;
+}
+
+.sort-status::after{
+  content: "◆";
+}
+
+.sort-asc::after {
+  content: "▼";
+  font-size: 0.55rem;
+}
+
+.sort-desc::after {
+  content: "▲";
+  font-size: 0.6rem;
+}
+
+.sort-status::after,
+.sort-asc::after,
+.sort-desc::after {
+  color: white;
+  padding-left: 0.5rem;
 }

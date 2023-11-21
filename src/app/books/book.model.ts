@@ -1,9 +1,11 @@
-export const BookModel = [
-  { name: 'id', label: 'id' },
-  { name: 'author', label: 'Автор' },
-  { name: 'title', label: 'Название книги' },
-  { name: 'publisher', label: 'Издатель' },
-  { name: 'year', label: 'Год издания' },
+import { UnionModel } from '../iunion';
+
+export const BookModel: Array<UnionModel> = [
+  { name: 'id', label: 'id', sortable: false },
+  { name: 'author', label: 'Автор', sortable: true },
+  { name: 'title', label: 'Название книги', sortable: true },
+  { name: 'publisher', label: 'Издатель', sortable: true },
+  { name: 'year', label: 'Год издания', sortable: true },
 ];
 
 export interface Book {
