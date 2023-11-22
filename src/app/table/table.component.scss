@@ -66,12 +66,12 @@ caption {
 }
 
 .sort-asc::after {
-  content: "▼";
+  content: "▲";
   font-size: 0.55rem;
 }
 
 .sort-desc::after {
-  content: "▲";
+  content: "▼";
   font-size: 0.6rem;
 }
 

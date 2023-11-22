@@ -1,27 +1,44 @@
 # Library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+This is my first test task with Angular.
+The idea of SPA is to create service for adding authors and books to the tables.
 
-## Development server
+## Authors page
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+There are 2 routes in the application. Main route, /authors, with redirect from non-existent routes.
 
-## Code scaffolding
+<img src="src/assets/images/readme/01_start_page.png" alt="Start page" width="400">
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The authors in the table immediately sorting by last name.
 
-## Build
+<img src="src/assets/images/readme/02_sort_by_lastname.png" alt="Sort by lastname" width="400">
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Books page
 
-## Running unit tests
+The second route is /books.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<img src="src/assets/images/readme/03_book_page.png" alt="Book page" width="400">
 
-## Running end-to-end tests
+You can choose author from the select field.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<img src="src/assets/images/readme/04_choose_author.png" alt="Choose author" width="400">
 
-## Further help
+The table with books is not sorted by default, but you can change row order by clicking on the headers.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<img src="src/assets/images/readme/05_add_books.png" alt="Adding book" width="400">
+
+Ascending by full name.
+
+<img src="src/assets/images/readme/06_sort_by_fullname_asc.png" alt="Sort by full name ascending" width="400">
+
+Descending by book title
+
+<img src="src/assets/images/readme/07_sort_by_title_desc.png" alt="Sort by title descending" width="400">
+
+## Some features
+
+- There are OnPush change detection strategy in the application.
+- The /books route with lazy loading.
+- The data is saved to the local storage.
+- The application navbar always at the top of screen.
+- The tables have sticky headers.
